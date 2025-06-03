@@ -15,7 +15,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         <div className="flex flex-col flex-1 min-w-0 h-full">
           <Nabvar />
 
-          <main className="flex-1 overflow-y-auto overflow-x-hidden min-w-0 p-2">
+          <main className="flex-1 overflow-y-auto overflow-x-hidden min-w-0 pt-6 px-6">
             {children}
           </main>
         </div>

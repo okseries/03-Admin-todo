@@ -12,7 +12,7 @@ import {
 
 export function Nabvar() {
   return (
-    <NavigationMenu className="w-fullshadow  h-16 px-6">
+    <NavigationMenu className="w-full shadow  h-16 px-6">
           <SidebarTrigger />
       
     </NavigationMenu>
