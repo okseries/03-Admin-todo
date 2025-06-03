@@ -1,3 +1,4 @@
+"use client";
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 
 import {
@@ -10,37 +11,41 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 // Menu items.
 const items = [
   {
     title: "Home",
-    url: "#",
+    path: "/dashboard",
     icon: Home,
   },
   {
     title: "Inbox",
-    url: "#",
+    path: "/dashboard/rest-todos",
     icon: Inbox,
   },
   {
     title: "Calendar",
-    url: "#",
+    path: "#",
     icon: Calendar,
   },
   {
     title: "Search",
-    url: "#",
+    path: "#",
     icon: Search,
   },
   {
     title: "Settings",
-    url: "#",
+    path: "#",
     icon: Settings,
   },
 ]
 
 export function AppSidebar() {
+
+  const pathname = usePathname();
   return (
     <Sidebar>
       <SidebarContent  className="">
@@ -50,11 +55,11 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                  <SidebarMenuButton className={`${item.path === pathname ? 'text-white bg-gradient-to-r from-sky-600 to-cyan-400' : ''} `} asChild>
+                    <Link href={item.path}>
                       <item.icon />
-                      <span>{item.title}</span>
-                    </a>
+                      {item.title}
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

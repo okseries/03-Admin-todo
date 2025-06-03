@@ -14,7 +14,6 @@ export function Nabvar() {
   return (
     <NavigationMenu className="w-full shadow  h-16 px-6">
           <SidebarTrigger />
-      
     </NavigationMenu>
   )
 }
