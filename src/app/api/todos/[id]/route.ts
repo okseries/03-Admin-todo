@@ -37,6 +37,8 @@ export async function PATCH(
 ) {
   try {
     const { id } = await context.params;
+    console.log("Updating todo with id:", id);
+    
 
     const todo = await getTodo(id);
 
@@ -55,6 +57,9 @@ export async function PATCH(
         completed,
       },
     });
+
+    console.log("Todo updated:", todoUpdated);
+    
 
     return NextResponse.json(todoUpdated, { status: 200 });
   } catch (error) {

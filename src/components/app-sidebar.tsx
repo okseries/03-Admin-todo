@@ -1,5 +1,5 @@
 "use client";
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { Calendar, Home, Inbox, NotebookPen, Search, Settings } from "lucide-react"
 
 import {
   Sidebar,
@@ -22,9 +22,9 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
+    title: "Todos",
     path: "/dashboard/rest-todos",
-    icon: Inbox,
+    icon: NotebookPen,
   },
   {
     title: "Calendar",
@@ -55,7 +55,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton className={`${item.path === pathname ? 'text-white bg-gradient-to-r from-sky-600 to-cyan-400' : ''} `} asChild>
+                  <SidebarMenuButton className={`${item.path === pathname ? 'text-white bg-gradient-to-r from-sky-600 to-cyan-400 hover:text-white' : ''} `} asChild>
                     <Link href={item.path}>
                       <item.icon />
                       {item.title}

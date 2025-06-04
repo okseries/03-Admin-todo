@@ -1,29 +1,27 @@
-import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+
+"use client";
+import { AppTooltip } from '@/components';
+import { Card, CardContent } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Switch } from '@/components/ui/switch'
 import { Todo } from '@/generated/prisma'
 
 interface TodoItemProps {
-    todo?: Todo
+    todo: Todo;
+    toggleTodo: (id: string, complete: boolean) => Promise<Todo | void>;
 }
 
-export const TodoItem = ({ todo }: TodoItemProps) => {
+export const TodoItem = ({ todo, toggleTodo }: TodoItemProps) => {
     return (
         <div>
             {
-
-                <Card className={`${todo?.completed ? 'bg-green-100' : 'bg-red-100'} shadow-md hover:shadow-lg transition-shadow duration-300`}>
-                    {/* <CardHeader>
-                        <CardTitle>Card Title</CardTitle>
-                        <CardAction>Card Action</CardAction>
-                    </CardHeader> */}
-                    <CardContent  className='flex flex-row  gap-2 items-center'> 
-                        <Checkbox />
+                <Card className={`${todo.completed ? 'bg-green-100' : 'bg-red-100'} shadow-md hover:shadow-lg transition-shadow duration-300`}>
+                    <CardContent className='flex flex-row  gap-2 items-center'>
+                        <AppTooltip title={todo.completed ? 'Marcar como pendiente' : 'Marcar como completado'}>
+                            <Checkbox checked={todo.completed} onClick={() => toggleTodo(todo.id, !todo.completed)} className='bg-cyan-500 cursor-pointer text-white' />
+                        </AppTooltip>
                         <p>{todo?.description}</p>
                     </CardContent>
-                    {/* <CardFooter>
-                        <p>Card Footer</p>
-                    </CardFooter> */}
+
                 </Card>}
         </div>
     )
