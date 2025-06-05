@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 }
 
-const RestTodosPage = async () => {
+const ServerTodoPage = async () => {
 
   const todos = await prisma.todo.findMany({ orderBy: { createdAt: 'desc' } });
   return (
@@ -21,6 +21,7 @@ const RestTodosPage = async () => {
     <>
 
     <div className='w-full  mb-4'>
+      <span>Server actio</span>
     <NewTodo/>
     </div>
 
@@ -29,4 +30,4 @@ const RestTodosPage = async () => {
   )
 }
 
-export default RestTodosPage
+export default ServerTodoPage

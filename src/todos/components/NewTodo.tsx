@@ -4,12 +4,10 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-import * as apiTodos from "../helpers/todo";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner"
-import { Trash } from "lucide-react";
+import { addTodo, deleteCompleted } from "../actions/todo-actions";
 
 const FormSchema = z.object({
   description: z
@@ -19,8 +17,6 @@ const FormSchema = z.object({
 });
 
 export function NewTodo() {
-  const router = useRouter();
-
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -29,17 +25,8 @@ export function NewTodo() {
   });
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    await apiTodos.createTodo(data.description);
-    router.refresh();
+    await addTodo(data.description);
     form.reset(); // Limpiar el formulario después de enviar
-  };
-
-  const onDeleteCompleted = async () => {
-    await apiTodos.deleteCompletedTodos();
-    router.refresh();
-    // toast.success("Tareas completadas eliminadas", {
-    //   position: "top-right",
-    // });
   };
 
   const handleDeleteCompleted = () => {
@@ -48,12 +35,10 @@ export function NewTodo() {
       description: "¿Continuar?",
       action: {
         label: "Sí",
-        onClick: () => onDeleteCompleted(),
+        onClick: () => deleteCompleted(),
       },
-
       closeButton: true,
       duration: 12000,
-      
       actionButtonStyle: {
         backgroundColor: "#dc2626", // rojo tailwind 600
         color: "white",

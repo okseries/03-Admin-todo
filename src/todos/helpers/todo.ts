@@ -1,12 +1,16 @@
 import { Todo } from "@/generated/prisma";
 
+const sleep = (seconds: number): Promise<boolean> => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(true);
+        }, seconds * 1000);
+    })
+}
 
 export const updateTodo = async (id: string, completed: boolean): Promise<Todo> => {
-    console.log("Updating todo with id:", id, "to complete:", completed);
 
     const body = {completed};
-    console.log("Request body:", body);
-    
 
     const todo = await fetch(`/api/todos/${id}`, {
         method: "PATCH",
@@ -16,13 +20,9 @@ export const updateTodo = async (id: string, completed: boolean): Promise<Todo> 
         }
     }).then((res) => res.json());
 
-    console.log("Todo updated:", todo);
-    
-
     return todo;
   
 }
-
 
 export const createTodo = async (description: string): Promise<Todo> => {
 
@@ -39,8 +39,6 @@ export const createTodo = async (description: string): Promise<Todo> => {
     return todo;
   
 }
-
-
 
 export const deleteCompletedTodos = async (): Promise<void> => {
     await fetch('/api/todos', {

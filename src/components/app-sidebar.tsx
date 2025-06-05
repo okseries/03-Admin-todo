@@ -27,9 +27,9 @@ const items = [
     icon: NotebookPen,
   },
   {
-    title: "Calendar",
-    path: "#",
-    icon: Calendar,
+    title: "Server Todos",
+    path: "/dashboard/server-todos",
+    icon: NotebookPen,
   },
   {
     title: "Search",
