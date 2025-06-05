@@ -32,9 +32,9 @@ const items = [
     icon: NotebookPen,
   },
   {
-    title: "Search",
-    path: "#",
-    icon: Search,
+    title: "Cookies",
+    path: "/dashboard/cookies",
+    icon: Inbox,
   },
   {
     title: "Settings",
