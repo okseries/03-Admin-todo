@@ -1,5 +1,5 @@
 "use client";
-import { Calendar, Home, Inbox, NotebookPen, Search, Settings } from "lucide-react"
+import { Box, Calendar, Home, Inbox, NotebookPen, Search, Settings } from "lucide-react"
 
 import {
   Sidebar,
@@ -37,9 +37,9 @@ const items = [
     icon: Inbox,
   },
   {
-    title: "Settings",
-    path: "#",
-    icon: Settings,
+    title: "Products",
+    path: "/dashboard/products",
+    icon: Box,
   },
 ]
 
